@@ -14,7 +14,6 @@ public class OrderCreatedDomainEventHandler(IMessageBus bus, ILogger<OrderCreate
 
     public async Task HandleAsync(OrderCreated orderCreated)
     {
-        throw new SystemException("deu merda");
         logger.LogInformation("Processing order: {OrderId} created at {CreatedAt}",  orderCreated.OrderId, orderCreated.CreatedAt);
 
          await Task.Delay(1000);
