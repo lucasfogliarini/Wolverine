@@ -1,5 +1,5 @@
 using Wolverine;
-using Wolverine.Handlers;
+using Wolverine.Orders;
 using Wolverine.Kafka;
 
 var builder = Host.CreateApplicationBuilder(args);
