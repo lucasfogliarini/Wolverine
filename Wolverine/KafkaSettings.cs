@@ -1,0 +1,1 @@
+public record KafkaSettings(string BootstrapServers, string TopicOrderCreated, string TopicOrderProcessed, string GroupId);
