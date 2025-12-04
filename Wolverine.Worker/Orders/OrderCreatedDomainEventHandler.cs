@@ -1,9 +1,20 @@
+using Wolverine.ErrorHandling;
+using Wolverine.Runtime.Handlers;
+
 namespace Wolverine.Worker.Orders;
 
 public class OrderCreatedDomainEventHandler(IMessageBus bus, ILogger<OrderCreatedDomainEventHandler> logger)
 {
+    public static void Configure(HandlerChain chain, Envelope envelope)
+    {
+        chain.OnAnyException()
+            .RetryTimes(3)
+            .Then.MoveToErrorQueue();
+    }
+
     public async Task HandleAsync(OrderCreated orderCreated)
     {
+        throw new SystemException("deu merda");
         logger.LogInformation("Processing order: {OrderId} created at {CreatedAt}",  orderCreated.OrderId, orderCreated.CreatedAt);
 
          await Task.Delay(1000);
