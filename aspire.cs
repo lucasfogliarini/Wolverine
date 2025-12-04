@@ -15,7 +15,7 @@ var kafka = builder.AddKafka("kafka")
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume("aspire_kafka_data");
 
-var wolverine = builder.AddProject("wolverine", "Wolverine")
+var wolverine = builder.AddProject("wolverine-worker", "Wolverine.Worker")
     .WaitFor(kafka)
     .WithReference(kafka);
 

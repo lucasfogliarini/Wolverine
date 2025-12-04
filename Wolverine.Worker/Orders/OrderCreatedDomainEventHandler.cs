@@ -1,4 +1,4 @@
-namespace Wolverine.Orders;
+namespace Wolverine.Worker.Orders;
 
 public class OrderCreatedDomainEventHandler(IMessageBus bus, ILogger<OrderCreatedDomainEventHandler> logger)
 {

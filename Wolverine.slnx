@@ -2,5 +2,5 @@
   <Folder Name="/Solution Items/">
     <File Path="aspire.cs" />
   </Folder>
-  <Project Path="Wolverine/Wolverine.csproj" />
+  <Project Path="Wolverine.Worker/Wolverine.Worker.csproj" />
 </Solution>

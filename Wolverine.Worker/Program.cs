@@ -1,20 +1,22 @@
 using Wolverine;
-using Wolverine.Orders;
+using Wolverine.Worker.Orders;
 using Wolverine.Kafka;
+using Wolverine.Worker;
 
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.UseWolverine(opts =>
 {
     var kafkaSettings = builder.Configuration
-                           .GetSection(nameof(KafkaSettings))
-                           .Get<KafkaSettings>()
+                           .GetSection(nameof(Kafka))
+                           .Get<Kafka>()
                        ?? throw new InvalidOperationException(
-                           $"As configurações do Kafka ({nameof(KafkaSettings)}) não foram encontradas."
+                           $"As configurações do Kafka ({nameof(Kafka)}) não foram encontradas."
                        );
 
-    // Configure Kafka transport
-    opts.UseKafka(kafkaSettings.BootstrapServers)
+    var connString = builder.Configuration.GetConnectionString("kafka");
+
+    opts.UseKafka(connString)
         .ConfigureClient(client =>
         {
             client.ClientId = kafkaSettings.GroupId;
