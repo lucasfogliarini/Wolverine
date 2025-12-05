@@ -39,7 +39,7 @@ public static class DependencyInjection
                 //    config.AutoOffsetReset = AutoOffsetReset.Latest;
                 //});
 
-            opts.PublishMessage<OrderProcessed>()
+            opts.PublishMessage<OrderProcessedDomainEvent>()
                 .ToKafkaTopic(kafkaSettings.TopicOrderProcessed);
         });
     }
