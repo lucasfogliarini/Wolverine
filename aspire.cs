@@ -10,7 +10,7 @@ builder.Configuration["ASPIRE_ALLOW_UNSECURED_TRANSPORT"] = "true";
 builder.Configuration["ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL"] = "http://localhost:2007";
 builder.Configuration["ASPNETCORE_URLS"] = "http://localhost:2006";
 
-var kafka = builder.AddKafka("kafka")
+var kafka = builder.AddKafka("kafka", port: 9092)
     .WithKafkaUI()
     .WithLifetime(ContainerLifetime.Persistent)
     .WithDataVolume("aspire_kafka_data");
